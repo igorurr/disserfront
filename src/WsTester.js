@@ -8,7 +8,7 @@ class WsTester extends Component {
   onopen = function(e) {
     console.log("[open] Соединение установлено");
     console.log("Отправляем данные на сервер");
-    this.socket.send("Меня зовут Джон");
+    this.ws.send('kukuepta')
   };
   
   onmessage = function(event) {
@@ -31,7 +31,6 @@ class WsTester extends Component {
     this.ws.onopen = this.onopen
     this.ws.onmessage = this.onmessage
     this.ws.onclose = this.onclose
-    this.ws.send('kukuepta')
   }
 
   render() {
