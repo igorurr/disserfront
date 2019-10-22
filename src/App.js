@@ -2,25 +2,21 @@ import React from 'react';
 import logo from './logo.svg';
 import WsTester from './WsTester';
 import './App.css';
+import WsProvider from './providers/WsProvider';
+import ChatProvider, { ChatContext } from './providers/ChatProvider';
+import Message from './Message'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      <WsTester />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <WsProvider>
+        <ChatProvider>
+          <h1>ВЛАД ЗАЕБАЛ ДЕЛАЙ ЧАТ</h1>
+          <ChatContext.Consumer>
+            {({messages}) => messages.map( msg => <Message msg={msg} /> )}
+          </ChatContext.Consumer>
+        </ChatProvider>
+      </WsProvider>
     </div>
   );
 }
