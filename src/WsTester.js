@@ -5,8 +5,16 @@ class WsTester extends Component {
 
   ws = null
 
+  constructor(props) {
+    super(props)
+
+    this.onopen = this.onopen.bind(this)
+    this.onmessage = this.onmessage.bind(this)
+    this.onclose = this.onclose.bind(this)
+  }
+
   onopen = function(e) {
-    console.log("[open] Соединение установлено");
+    console.log("[open] Соединение установлено", e, this, this.ws);
     console.log("Отправляем данные на сервер");
     this.ws.send('kukuepta')
   };
@@ -26,7 +34,7 @@ class WsTester extends Component {
   };
 
   componentDidMount() {
-    this.ws = new WebSocket("ws://127.0.0.1:8080/")
+    this.ws = new WebSocket("ws://localhost/ws")
     if(!this.ws) return
     this.ws.onopen = this.onopen
     this.ws.onmessage = this.onmessage
